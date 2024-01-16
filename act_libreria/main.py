@@ -113,9 +113,10 @@ def consultar_libro(biblioteca):
     print("\nBuscador de libro\n")
 
     buscar_por = int(input("Buscar libros por:\n \n 1. Titulo\n 2. Autor\n 3. Ano de publicacion\n 4. Cancelar\n \nOpcion: "))
+    filtro = ('Titulo' if buscar_por == 1 else 'Autor' if buscar_por == 2 else 'Ano de publicacion')
 
     if buscar_por in [1,2,3]:
-        criterio = input("\nBuscar por Titulo del libro.\n \nIngresa el Titulo del Libro a consultar: ")
+        criterio = input("\nBuscar libro.\n \nIngresa el "+''.join(filtro)+" del Libro a consultar:")
         for libro_id, libro_info in biblioteca.items():
             if libro_info['titulo'].lower() == criterio if buscar_por == 1 else libro_info['autor'].lower() == criterio if buscar_por == 2 else str(libro_info['fecha_publicacion']) == criterio:
                 imprimir_libros_consulta(libro_info)
